@@ -3,6 +3,7 @@ package com.example.pokedex.activities
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.pokedex.R
@@ -19,7 +20,7 @@ class RegisterActivity : AppCompatActivity() {
     private lateinit var editLogin: EditText
     private lateinit var editPassword: EditText
     private lateinit var btnRegister: Button
-    private lateinit var btnBackToLogin: Button
+    private lateinit var btnBackToLogin: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

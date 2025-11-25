@@ -7,7 +7,7 @@ plugins {
 android {
     namespace = "com.example.pokedex"
     compileSdk {
-        version = release(33)
+        version = release(34)
     }
 
     defaultConfig {

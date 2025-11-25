@@ -14,7 +14,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class PokemonDetailsActivity : AppCompatActivity() {
+class PokemonDetailsActivity : BaseActivity() {
 
     private lateinit var imgPokemon: ImageView
     private lateinit var tvName: TextView
@@ -70,10 +70,10 @@ class PokemonDetailsActivity : AppCompatActivity() {
     }
 
     private fun displayPokemonInfo(pokemon: RegisteredPokemon) {
-        tvName.text = "Nome: ${pokemon.pokemon_name.capitalize()}"
-        tvTypes.text = "Tipos: ${pokemon.types.split(",").joinToString(", ")}"
-        tvAbility.text = "Habilidade: ${pokemon.ability}"
-        tvMoves.text = "Ataques: ${pokemon.moves.split(",").joinToString(", ")}"
+        tvName.text = pokemon.pokemon_name.capitalize()
+        tvTypes.text = pokemon.types.split(",").joinToString(", ")
+        tvAbility.text = pokemon.ability
+        tvMoves.text = pokemon.moves.split(",").joinToString(", ")
     }
 
     private fun loadPokemonImage(pokemonId: Int) {
@@ -162,7 +162,7 @@ class PokemonDetailsActivity : AppCompatActivity() {
         val evolutions = mutableListOf<String>()
         collectEvolutions(chain, evolutions)
 
-        val evolutionText = "Cadeia Evolutiva: ${evolutions.joinToString(" → ")}"
+        val evolutionText = evolutions.joinToString(" → ")
         val tvEvolution = TextView(this)
         tvEvolution.text = evolutionText
         tvEvolution.textSize = 16f

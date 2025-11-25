@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.LinearLayout // Importe isso
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -12,13 +13,17 @@ import com.example.pokedex.models.PokemonBasic
 import com.example.pokedex.models.RegisteredPokemon
 
 class SearchResultAdapter(
-    private var items: List<Any>
+    private var items: List<Any>,
+    private val isAbilitySearch: Boolean = false
 ) : RecyclerView.Adapter<SearchResultAdapter.SearchViewHolder>() {
 
     class SearchViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val imgPokemon: ImageView = view.findViewById(R.id.imgPokemon)
         val tvName: TextView = view.findViewById(R.id.tvName)
+        val tvId: TextView = view.findViewById(R.id.tvId)
+        val tvDataLabel: TextView = view.findViewById(R.id.tvDataLabel)
         val tvTypes: TextView = view.findViewById(R.id.tvTypes)
+        val chipTypeContainer: LinearLayout = view.findViewById(R.id.chipTypeContainer)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchViewHolder {
@@ -32,23 +37,33 @@ class SearchResultAdapter(
 
         when (item) {
             is PokemonBasic -> {
-                val pokemonId = item.url.split("/").dropLast(1).last().toInt()
-                holder.tvName.text = item.name.capitalize()
-                holder.tvTypes.text = "ID: #$pokemonId"
+                val pokemonId = item.url.split("/").dropLast(1).last()
+
+                holder.tvName.text = item.name.replaceFirstChar { it.uppercase() }
+                holder.tvId.text = "#$pokemonId"
+                holder.chipTypeContainer.visibility = View.GONE
 
                 val imageUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/$pokemonId.png"
-                Glide.with(holder.itemView.context)
-                    .load(imageUrl)
-                    .into(holder.imgPokemon)
+                Glide.with(holder.itemView.context).load(imageUrl).into(holder.imgPokemon)
             }
+
             is RegisteredPokemon -> {
-                holder.tvName.text = item.pokemon_name.capitalize()
-                holder.tvTypes.text = "Tipos: ${item.types.split(",").joinToString(", ")}"
+                holder.tvName.text = item.pokemon_name.replaceFirstChar { it.uppercase() }
+                holder.tvId.text = "#${item.pokemon_id}"
+
+                holder.chipTypeContainer.visibility = View.VISIBLE
+
+                if (isAbilitySearch) {
+                    holder.tvDataLabel.text = "ABILITY:"
+                    holder.tvTypes.text = item.ability
+                } else {
+                    holder.tvDataLabel.text = "TYPE:"
+                    holder.tvTypes.text = item.types.split(",")
+                        .joinToString(", ") { it.trim().uppercase() }
+                }
 
                 val imageUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${item.pokemon_id}.png"
-                Glide.with(holder.itemView.context)
-                    .load(imageUrl)
-                    .into(holder.imgPokemon)
+                Glide.with(holder.itemView.context).load(imageUrl).into(holder.imgPokemon)
             }
         }
     }

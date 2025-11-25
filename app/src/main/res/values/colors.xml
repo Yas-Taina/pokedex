@@ -8,4 +8,9 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="red">#FFFF0000</color>
+    <color name="pokedex_red">#DC0A2D</color>
+    <color name="pokedex_dark_red">#89061C</color>
+    <color name="pokedex_screen_bg">#F0F0F0</color>
+    <color name="pokedex_blue_light">#3B4CCA</color>
+    <color name="pokedex_border">#202020</color>
 </resources>

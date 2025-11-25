@@ -13,7 +13,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class SelectAbilityMoveActivity : AppCompatActivity() {
+class SelectAbilityMoveActivity : BaseActivity() {
 
     private lateinit var tvPokemonName: TextView
     private lateinit var spinnerAbility: Spinner

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/pokedex_red"
+    android:paddingTop="16dp"
+    android:paddingBottom="16dp"
+    android:paddingStart="16dp"
+    android:paddingEnd="16dp"
+    android:elevation="4dp">
+
+    <View
+        android:id="@+id/headerBlueLens"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:background="@drawable/shape_blue_lens"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/headerLights"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="4dp"
+        app:layout_constraintStart_toEndOf="@id/headerBlueLens"
+        app:layout_constraintTop_toTopOf="@id/headerBlueLens">
+
+        <View android:layout_width="10dp" android:layout_height="10dp"
+            android:background="@drawable/bg_pokedex_screen" android:backgroundTint="#CC0000"
+            android:layout_marginEnd="6dp"/>
+        <View android:layout_width="10dp" android:layout_height="10dp"
+            android:background="@drawable/bg_pokedex_screen" android:backgroundTint="#FFCC00"
+            android:layout_marginEnd="6dp"/>
+        <View android:layout_width="10dp" android:layout_height="10dp"
+            android:background="@drawable/bg_pokedex_screen" android:backgroundTint="#33AA33"/>
+    </LinearLayout>
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/pokedex_toolbar"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:background="@drawable/bg_pokedex_header_panel"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:popupTheme="@style/Pokedex.PopupMenu"
+        app:title="POKÉDEX v1.0"
+        app:titleTextAppearance="@style/TextAppearance.AppCompat.Body1"
+        app:titleTextColor="#E0E0E0"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="@id/headerBlueLens"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/headerBlueLens"
+        app:layout_constraintTop_toBottomOf="@id/headerLights" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:background="#89061C"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@id/headerBlueLens"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

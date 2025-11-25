@@ -2,11 +2,8 @@ package com.example.pokedex.activities
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuItem
 import android.widget.TextView
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import com.example.pokedex.R
 import com.example.pokedex.api.RetrofitClient
 import com.example.pokedex.models.HomeStats
@@ -15,7 +12,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class MainActivity : AppCompatActivity() {
+class  MainActivity : BaseActivity() {
 
     private lateinit var tvWelcome: TextView
     private lateinit var tvTotalPokemons: TextView
@@ -53,7 +50,7 @@ class MainActivity : AppCompatActivity() {
                 if (response.isSuccessful) {
                     val stats = response.body()
                     if (stats != null) {
-                        tvTotalPokemons.text = "Total de Pokémons: ${stats.total}"
+                        tvTotalPokemons.text = "Total de Pokémon: ${stats.total}"
 
                         val topTypesText = if (stats.topTypes.isNotEmpty()) {
                             "Top 3 Tipos:\n" + stats.topTypes.joinToString("\n") {
@@ -84,38 +81,5 @@ class MainActivity : AppCompatActivity() {
                 ).show()
             }
         })
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.main_menu, menu)
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            R.id.menu_register_pokemon -> {
-                startActivity(Intent(this, PokemonListActivity::class.java))
-                true
-            }
-            R.id.menu_list_my_pokemons -> {
-                startActivity(Intent(this, MyPokemonsActivity::class.java))
-                true
-            }
-            R.id.menu_search_by_type -> {
-                startActivity(Intent(this, SearchByTypeActivity::class.java))
-                true
-            }
-            R.id.menu_search_by_ability -> {
-                startActivity(Intent(this, SearchByAbilityActivity::class.java))
-                true
-            }
-            R.id.menu_logout -> {
-                sessionManager.logout()
-                startActivity(Intent(this, LoginActivity::class.java))
-                finish()
-                true
-            }
-            else -> super.onOptionsItemSelected(item)
-        }
     }
 }

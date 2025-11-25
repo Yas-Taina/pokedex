@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.pokedex.R
 import com.example.pokedex.utils.SessionManager
@@ -15,6 +16,9 @@ class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
+
+        val logo = findViewById<ImageView>(R.id.logoImage)
+        logo.animate().rotation(360f).setDuration(2000).start()
 
         sessionManager = SessionManager(this)
 

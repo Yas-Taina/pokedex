@@ -15,7 +15,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class SearchByAbilityActivity : AppCompatActivity() {
+class SearchByAbilityActivity : BaseActivity() {
 
     private lateinit var editAbility: EditText
     private lateinit var radioGroup: RadioGroup
@@ -36,7 +36,7 @@ class SearchByAbilityActivity : AppCompatActivity() {
         recyclerView = findViewById(R.id.recyclerView)
 
         recyclerView.layoutManager = LinearLayoutManager(this)
-        adapter = SearchResultAdapter(emptyList())
+        adapter = SearchResultAdapter(emptyList(), isAbilitySearch = true)
         recyclerView.adapter = adapter
 
         btnSearch.setOnClickListener {

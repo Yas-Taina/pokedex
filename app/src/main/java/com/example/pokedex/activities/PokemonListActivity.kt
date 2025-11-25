@@ -19,7 +19,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class PokemonListActivity : AppCompatActivity() {
+class PokemonListActivity : BaseActivity() {
 
     private lateinit var editSearch: EditText
     private lateinit var recyclerView: RecyclerView

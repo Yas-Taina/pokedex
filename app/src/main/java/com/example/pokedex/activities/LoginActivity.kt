@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.pokedex.R
@@ -20,7 +21,7 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var editLogin: EditText
     private lateinit var editPassword: EditText
     private lateinit var btnLogin: Button
-    private lateinit var btnGoToRegister: Button
+    private lateinit var btnGoToRegister: TextView
     private lateinit var sessionManager: SessionManager
 
     override fun onCreate(savedInstanceState: Bundle?) {

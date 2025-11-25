@@ -33,10 +33,11 @@ class PokemonAdapter(
     override fun onBindViewHolder(holder: PokemonViewHolder, position: Int) {
         val pokemon = pokemons[position]
         val pokemonId = pokemon.url.split("/").dropLast(1).last().toInt()
+
         val isRegistered = registeredIds.contains(pokemonId)
 
         holder.tvId.text = "#$pokemonId"
-        holder.tvName.text = pokemon.name.capitalize()
+        holder.tvName.text = pokemon.name.replaceFirstChar { it.uppercase() }
 
         val imageUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/$pokemonId.png"
 
@@ -45,13 +46,23 @@ class PokemonAdapter(
             .into(holder.imgPokemon)
 
         if (isRegistered) {
-            holder.imgPokemon.alpha = 1.0f
-            holder.btnRegister.isEnabled = false
-            holder.btnRegister.text = "Registrado"
-        } else {
             holder.imgPokemon.alpha = 0.4f
+
+            holder.btnRegister.text = "REGISTRADO"
+            holder.btnRegister.isEnabled = false
+
+            holder.btnRegister.setBackgroundResource(R.drawable.btn_pokedex_disabled)
+            holder.btnRegister.setTextColor(android.graphics.Color.DKGRAY)
+
+            holder.btnRegister.setOnClickListener(null)
+        } else {
+            holder.imgPokemon.alpha = 1.0f
+
+            holder.btnRegister.text = "REGISTRAR"
             holder.btnRegister.isEnabled = true
-            holder.btnRegister.text = "Registrar"
+            holder.btnRegister.setBackgroundResource(R.drawable.btn_pokedex_action)
+            holder.btnRegister.setTextColor(android.graphics.Color.WHITE)
+
             holder.btnRegister.setOnClickListener {
                 onRegisterClick(pokemon)
             }

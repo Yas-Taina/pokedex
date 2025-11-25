@@ -12,7 +12,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class EditPokemonActivity : AppCompatActivity() {
+class EditPokemonActivity : BaseActivity() {
 
     private lateinit var tvPokemonName: TextView
     private lateinit var spinnerAbility: Spinner
