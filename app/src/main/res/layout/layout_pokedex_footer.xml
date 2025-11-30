@@ -15,47 +15,59 @@
         app:layout_constraintTop_toTopOf="parent"/>
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintStart_toEndOf="@id/btnDecorBlack"
+        app:layout_constraintBottom_toBottomOf="@id/btnDecorBlack"
         app:layout_constraintEnd_toStartOf="@id/ventContainer"
-        app:layout_constraintTop_toTopOf="@id/btnDecorBlack"
-        app:layout_constraintBottom_toBottomOf="@id/btnDecorBlack">
+        app:layout_constraintStart_toEndOf="@id/btnDecorBlack"
+        app:layout_constraintTop_toTopOf="@id/btnDecorBlack">
 
         <View
             android:layout_width="40dp"
             android:layout_height="8dp"
-            android:background="#89061C"
-            android:layout_marginEnd="12dp"/>
+            android:layout_marginEnd="12dp"
+            android:background="#89061C" />
+
         <View
             android:layout_width="40dp"
             android:layout_height="8dp"
-            android:background="#3B4CCA"/>
+            android:background="#3B4CCA" />
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/ventContainer"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:orientation="vertical"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <View
             android:layout_width="30dp"
             android:layout_height="3dp"
-            android:background="#222222"
-            android:layout_marginBottom="3dp"/>
+            android:layout_marginBottom="3dp"
+            android:background="#222222" />
+
         <View
             android:layout_width="30dp"
             android:layout_height="3dp"
-            android:background="#222222"
-            android:layout_marginBottom="3dp"/>
+            android:layout_marginBottom="3dp"
+            android:background="#222222" />
+
         <View
             android:layout_width="30dp"
             android:layout_height="3dp"
-            android:background="#222222"/>
+            android:layout_marginBottom="3dp"
+            android:background="#222222" />
+
+        <View
+            android:layout_width="30dp"
+            android:layout_height="3dp"
+            android:background="#222222" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
