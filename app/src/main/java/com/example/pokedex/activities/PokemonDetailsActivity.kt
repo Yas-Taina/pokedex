@@ -84,7 +84,7 @@ class PokemonDetailsActivity : BaseActivity() {
         tvName.text = pokemon.pokemon_name.replaceFirstChar { it.uppercase() }
         tvTypes.text = pokemon.types.split(",").joinToString(", ") { it.trim().uppercase() }
         tvAbility.text = pokemon.ability.uppercase()
-        tvMoves.text = pokemon.moves.split(",").joinToString("\n") { "- ${it.trim()}" }
+        tvMoves.text = pokemon.moves.split(",").joinToString("\n") { "● ${it.trim()}" }
 
         val imageUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.pokemon_id}.png"
         Glide.with(this).load(imageUrl).into(imgPokemon)

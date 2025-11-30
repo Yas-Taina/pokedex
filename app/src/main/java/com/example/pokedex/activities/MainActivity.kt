@@ -52,7 +52,7 @@ class  MainActivity : BaseActivity() {
 
                         val topTypesText = if (stats.topTypes.isNotEmpty()) {
                             "Top 3 Tipos:\n" + stats.topTypes.joinToString("\n") {
-                                "- ${it.type}: ${it.count}"
+                                "● ${it.type}: ${it.count}"
                             }
                         } else {
                             "Nenhum tipo registrado"
@@ -61,7 +61,7 @@ class  MainActivity : BaseActivity() {
 
                         val topAbilitiesText = if (stats.topAbilities.isNotEmpty()) {
                             "Top 3 Habilidades:\n" + stats.topAbilities.joinToString("\n") {
-                                "- ${it.ability}: ${it.count}"
+                                "● ${it.ability}: ${it.count}"
                             }
                         } else {
                             "Nenhuma habilidade registrada"
