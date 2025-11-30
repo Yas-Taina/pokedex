@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
-import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.pokedex.R
 import com.example.pokedex.api.RetrofitClient
@@ -25,7 +25,6 @@ class RegisterActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
-
         editName = findViewById(R.id.editName)
         editLogin = findViewById(R.id.editLogin)
         editPassword = findViewById(R.id.editPassword)
@@ -47,7 +46,7 @@ class RegisterActivity : AppCompatActivity() {
         val password = editPassword.text.toString().trim()
 
         if (name.isEmpty() || login.isEmpty() || password.isEmpty()) {
-            Toast.makeText(this, "Preencha todos os campos", Toast.LENGTH_SHORT).show()
+            showAlert("Dados Incompletos", "Por favor, preencha todos os campos para continuar.")
             return
         }
 
@@ -56,28 +55,36 @@ class RegisterActivity : AppCompatActivity() {
         RetrofitClient.apiService.register(request).enqueue(object : Callback<AuthResponse> {
             override fun onResponse(call: Call<AuthResponse>, response: Response<AuthResponse>) {
                 if (response.isSuccessful) {
-                    Toast.makeText(
-                        this@RegisterActivity,
-                        "Cadastro realizado com sucesso!",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                    finish()
+                    showAlert("Bem-vindo!", "Cadastro realizado com sucesso! Agora você pode fazer login.", closeOnDismiss = true)
                 } else {
                     val errorMsg = when (response.code()) {
-                        409 -> "Login já existe"
-                        else -> "Erro ao cadastrar usuário"
+                        409 -> "Este login já está em uso.\nPor favor, escolha outro nome de usuário."
+                        else -> "Erro ao cadastrar usuário (Código ${response.code()})."
                     }
-                    Toast.makeText(this@RegisterActivity, errorMsg, Toast.LENGTH_SHORT).show()
+                    showAlert("Erro no Cadastro", errorMsg)
                 }
             }
 
             override fun onFailure(call: Call<AuthResponse>, t: Throwable) {
-                Toast.makeText(
-                    this@RegisterActivity,
-                    "Erro de conexão: ${t.message}",
-                    Toast.LENGTH_SHORT
-                ).show()
+                showAlert("Erro de Conexão", "Não foi possível conectar ao servidor.\nVerifique sua internet.")
             }
         })
+    }
+
+    private fun showAlert(title: String, message: String, closeOnDismiss: Boolean = false) {
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle(title)
+        builder.setMessage(message)
+
+        builder.setPositiveButton("OK") { dialog, _ ->
+            dialog.dismiss()
+            if (closeOnDismiss) {
+                finish()
+            }
+        }
+
+        builder.setCancelable(false)
+
+        builder.show()
     }
 }

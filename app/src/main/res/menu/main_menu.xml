@@ -16,7 +16,7 @@
     <item
         android:id="@+id/menu_list_my_pokemons"
         android:icon="@drawable/ic_list"
-        android:title="Meus Pokémon"
+        android:title="Pokémon Registrados"
         app:showAsAction="never" />
 
     <item
@@ -34,6 +34,12 @@
     <item
         android:id="@+id/menu_logout"
         android:icon="@drawable/ic_power"
-        android:title="Sair"
+        android:title="Fazer Logout"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/menu_close_app"
+        android:icon="@drawable/ic_close"
+        android:title="Fechar Aplicativo"
         app:showAsAction="never" />
 </menu>

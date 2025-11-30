@@ -8,10 +8,21 @@ exports.registerPokemon = async (req, res) => {
   }
 
   try {
+    const checkDuplicate = await pool.query(
+      'SELECT * FROM registered_pokemons WHERE pokemon_name = $1',
+      [pokemon_name]
+    );
+
+    if (checkDuplicate.rows.length > 0) {
+      return res.status(409).json({
+          error: `O Pokémon ${pokemon_name} já foi registrado por outro treinador.`
+      });
+    }
+
     const result = await pool.query(
-      `INSERT INTO registered_pokemons 
-       (pokemon_id, pokemon_name, types, ability, moves, user_login) 
-       VALUES ($1, $2, $3, $4, $5, $6) 
+      `INSERT INTO registered_pokemons
+       (pokemon_id, pokemon_name, types, ability, moves, user_login)
+       VALUES ($1, $2, $3, $4, $5, $6)
        RETURNING *`,
       [pokemon_id, pokemon_name, types, ability, moves, user_login]
     );
@@ -21,9 +32,6 @@ exports.registerPokemon = async (req, res) => {
       pokemon: result.rows[0]
     });
   } catch (error) {
-    if (error.code === '23505') {
-      return res.status(409).json({ error: 'Pokémon já registrado por este usuário' });
-    }
     console.error('Erro ao registrar pokémon:', error);
     res.status(500).json({ error: 'Erro ao registrar pokémon' });
   }
@@ -46,13 +54,8 @@ exports.getUserPokemons = async (req, res) => {
 };
 
 exports.checkRegisteredPokemons = async (req, res) => {
-  const { user_login } = req.params;
-
   try {
-    const result = await pool.query(
-      'SELECT pokemon_id FROM registered_pokemons WHERE user_login = $1',
-      [user_login]
-    );
+    const result = await pool.query('SELECT pokemon_id FROM registered_pokemons');
 
     const registeredIds = result.rows.map(row => row.pokemon_id);
     res.json(registeredIds);
@@ -131,32 +134,25 @@ exports.getPokemonDetails = async (req, res) => {
 };
 
 exports.getHomeStats = async (req, res) => {
-  const { user_login } = req.params;
-
   try {
     const totalResult = await pool.query(
-      'SELECT COUNT(*) as total FROM registered_pokemons WHERE user_login = $1',
-      [user_login]
+      'SELECT COUNT(*) as total FROM registered_pokemons'
     );
 
     const typesResult = await pool.query(
       `SELECT unnest(string_to_array(types, ',')) as type, COUNT(*) as count
-       FROM registered_pokemons 
-       WHERE user_login = $1
+       FROM registered_pokemons
        GROUP BY type
        ORDER BY count DESC
-       LIMIT 3`,
-      [user_login]
+       LIMIT 3`
     );
 
     const abilitiesResult = await pool.query(
       `SELECT ability, COUNT(*) as count
-       FROM registered_pokemons 
-       WHERE user_login = $1
+       FROM registered_pokemons
        GROUP BY ability
        ORDER BY count DESC
-       LIMIT 3`,
-      [user_login]
+       LIMIT 3`
     );
 
     res.json({
@@ -171,14 +167,14 @@ exports.getHomeStats = async (req, res) => {
 };
 
 exports.searchByType = async (req, res) => {
-  const { user_login, type } = req.params;
+  const { type } = req.params;
 
   try {
     const result = await pool.query(
-      `SELECT * FROM registered_pokemons 
-       WHERE user_login = $1 AND types LIKE $2
+      `SELECT * FROM registered_pokemons
+       WHERE types LIKE $1
        ORDER BY pokemon_id`,
-      [user_login, `%${type}%`]
+      [`%${type}%`]
     );
 
     res.json(result.rows);
@@ -189,14 +185,14 @@ exports.searchByType = async (req, res) => {
 };
 
 exports.searchByAbility = async (req, res) => {
-  const { user_login, ability } = req.params;
+  const { ability } = req.params;
 
   try {
     const result = await pool.query(
-      `SELECT * FROM registered_pokemons 
-       WHERE user_login = $1 AND ability ILIKE $2
+      `SELECT * FROM registered_pokemons
+       WHERE ability ILIKE $1
        ORDER BY pokemon_id`,
-      [user_login, `%${ability}%`]
+      [`%${ability}%`]
     );
 
     res.json(result.rows);
@@ -204,4 +200,16 @@ exports.searchByAbility = async (req, res) => {
     console.error('Erro ao pesquisar por habilidade:', error);
     res.status(500).json({ error: 'Erro ao pesquisar por habilidade' });
   }
+};
+
+exports.getAllPokemons = async (req, res) => {
+    try {
+        const query = 'SELECT * FROM registered_pokemons ORDER BY id ASC';
+        const { rows } = await pool.query(query);
+
+        res.status(200).json(rows);
+    } catch (error) {
+        console.error('Erro ao buscar todos os pokémons:', error);
+        res.status(500).json({ error: 'Erro ao buscar pokémons' });
+    }
 };

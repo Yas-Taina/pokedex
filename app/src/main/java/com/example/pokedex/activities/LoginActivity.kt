@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
-import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.pokedex.R
 import com.example.pokedex.api.RetrofitClient
@@ -29,7 +29,9 @@ class LoginActivity : AppCompatActivity() {
         setContentView(R.layout.activity_login)
 
         sessionManager = SessionManager(this)
-
+        if (sessionManager.isLoggedIn()) {
+            goToHome()
+        }
         editLogin = findViewById(R.id.editLogin)
         editPassword = findViewById(R.id.editPassword)
         btnLogin = findViewById(R.id.btnLogin)
@@ -49,7 +51,7 @@ class LoginActivity : AppCompatActivity() {
         val password = editPassword.text.toString().trim()
 
         if (login.isEmpty() || password.isEmpty()) {
-            Toast.makeText(this, "Preencha todos os campos", Toast.LENGTH_SHORT).show()
+            showAlert("Dados Incompletos", "Por favor, preencha o login e a senha.")
             return
         }
 
@@ -61,25 +63,37 @@ class LoginActivity : AppCompatActivity() {
                     val user = response.body()?.user
                     if (user != null) {
                         sessionManager.saveUser(user.login, user.name)
-                        startActivity(Intent(this@LoginActivity, MainActivity::class.java))
-                        finish()
+                        goToHome()
                     }
                 } else {
-                    Toast.makeText(
-                        this@LoginActivity,
-                        "Credenciais inválidas",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    val errorMsg = when (response.code()) {
+                        401, 404 -> "Usuário ou senha incorretos.\nTente novamente."
+                        else -> "Erro no servidor (Código ${response.code()})"
+                    }
+                    showAlert("Acesso Negado", errorMsg)
                 }
             }
 
             override fun onFailure(call: Call<AuthResponse>, t: Throwable) {
-                Toast.makeText(
-                    this@LoginActivity,
-                    "Erro de conexão: ${t.message}",
-                    Toast.LENGTH_SHORT
-                ).show()
+                showAlert("Erro de Conexão", "Não foi possível conectar ao servidor.\nVerifique sua internet.")
             }
         })
+    }
+
+    private fun goToHome() {
+        val intent = Intent(this@LoginActivity, MainActivity::class.java)
+        startActivity(intent)
+        finish()
+    }
+
+    private fun showAlert(title: String, message: String) {
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle(title)
+        builder.setMessage(message)
+        builder.setPositiveButton("OK") { dialog, _ ->
+            dialog.dismiss()
+        }
+        builder.setCancelable(false)
+        builder.show()
     }
 }

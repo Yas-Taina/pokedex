@@ -67,7 +67,7 @@
                 android:id="@+id/radioRegistered"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Meus Pokémon (Local)"
+                android:text="Pokémon Registrados (Local)"
                 android:textSize="12sp"
                 android:fontFamily="monospace"
                 android:textColor="#333333"/>

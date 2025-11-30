@@ -18,5 +18,6 @@ data class Chain(
 )
 
 data class SpeciesInfo(
-    val name: String
+    val name: String,
+    val url: String
 )

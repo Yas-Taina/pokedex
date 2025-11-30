@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.pokedex.R
 import com.example.pokedex.utils.SessionManager
 
-// open permite que outras herdem dela
 open class BaseActivity : AppCompatActivity() {
     override fun setContentView(layoutResID: Int) {
         super.setContentView(layoutResID)
@@ -54,7 +53,7 @@ open class BaseActivity : AppCompatActivity() {
                 true
             }
             R.id.menu_list_my_pokemons -> {
-                startActivity(Intent(this, MyPokemonsActivity::class.java))
+                startActivity(Intent(this, BDPokemonsActivity::class.java))
                 true
             }
             R.id.menu_search_by_type -> {
@@ -75,6 +74,11 @@ open class BaseActivity : AppCompatActivity() {
                 intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                 startActivity(intent)
                 finish()
+                true
+            }
+
+            R.id.menu_close_app -> {
+                finishAffinity()
                 true
             }
             else -> super.onOptionsItemSelected(item)

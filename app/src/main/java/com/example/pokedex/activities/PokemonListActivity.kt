@@ -6,7 +6,6 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.widget.EditText
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pokedex.R
@@ -25,7 +24,6 @@ class PokemonListActivity : BaseActivity() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: PokemonAdapter
     private lateinit var sessionManager: SessionManager
-
     private var allPokemons = listOf<PokemonBasic>()
     private var registeredIds = listOf<Int>()
 
@@ -37,12 +35,14 @@ class PokemonListActivity : BaseActivity() {
 
         editSearch = findViewById(R.id.editSearch)
         recyclerView = findViewById(R.id.recyclerView)
-
         recyclerView.layoutManager = LinearLayoutManager(this)
-
-        adapter = PokemonAdapter(emptyList(), registeredIds) { pokemon ->
-            onPokemonClick(pokemon)
-        }
+        adapter = PokemonAdapter(
+            emptyList(),
+            registeredIds,
+            onRegisterClick = { pokemon ->
+                onPokemonClick(pokemon)
+            }
+        )
         recyclerView.adapter = adapter
 
         editSearch.addTextChangedListener(object : TextWatcher {
@@ -54,27 +54,29 @@ class PokemonListActivity : BaseActivity() {
         })
 
         loadRegisteredPokemons()
-        loadAllPokemons()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        loadRegisteredPokemons()
     }
 
     private fun loadRegisteredPokemons() {
-        val userLogin = sessionManager.getUserLogin() ?: return
-
-        RetrofitClient.apiService.getRegisteredPokemonIds(userLogin)
+        RetrofitClient.apiService.getRegisteredPokemonIds()
             .enqueue(object : Callback<List<Int>> {
                 override fun onResponse(call: Call<List<Int>>, response: Response<List<Int>>) {
                     if (response.isSuccessful) {
                         registeredIds = response.body() ?: emptyList()
                         adapter.updateRegisteredIds(registeredIds)
+
+                        if (allPokemons.isEmpty()) {
+                            loadAllPokemons()
+                        }
                     }
                 }
 
                 override fun onFailure(call: Call<List<Int>>, t: Throwable) {
-                    Toast.makeText(
-                        this@PokemonListActivity,
-                        "Erro ao carregar pokémons registrados",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    Toast.makeText(this@PokemonListActivity, "Erro ao verificar registros", Toast.LENGTH_SHORT).show()
                 }
             })
     }
@@ -93,11 +95,7 @@ class PokemonListActivity : BaseActivity() {
                 }
 
                 override fun onFailure(call: Call<PokemonListResponse>, t: Throwable) {
-                    Toast.makeText(
-                        this@PokemonListActivity,
-                        "Erro ao carregar pokémons",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    Toast.makeText(this@PokemonListActivity, "Erro ao carregar PokeAPI", Toast.LENGTH_SHORT).show()
                 }
             })
     }
@@ -115,7 +113,7 @@ class PokemonListActivity : BaseActivity() {
         val pokemonId = pokemon.url.split("/").dropLast(1).last().toInt()
 
         if (registeredIds.contains(pokemonId)) {
-            Toast.makeText(this, "Pokémon já registrado", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Você já possui este Pokémon!", Toast.LENGTH_SHORT).show()
             return
         }
 
@@ -123,10 +121,5 @@ class PokemonListActivity : BaseActivity() {
         intent.putExtra("pokemon_id", pokemonId)
         intent.putExtra("pokemon_name", pokemon.name)
         startActivity(intent)
-    }
-
-    override fun onResume() {
-        super.onResume()
-        loadRegisteredPokemons()
     }
 }

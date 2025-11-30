@@ -43,14 +43,12 @@ class  MainActivity : BaseActivity() {
     }
 
     private fun loadHomeStats() {
-        val userLogin = sessionManager.getUserLogin() ?: return
-
-        RetrofitClient.apiService.getHomeStats(userLogin).enqueue(object : Callback<HomeStats> {
+        RetrofitClient.apiService.getHomeStats().enqueue(object : Callback<HomeStats> {
             override fun onResponse(call: Call<HomeStats>, response: Response<HomeStats>) {
                 if (response.isSuccessful) {
                     val stats = response.body()
                     if (stats != null) {
-                        tvTotalPokemons.text = "Total de Pokémon: ${stats.total}"
+                        tvTotalPokemons.text = "Pokémon Registrados: ${stats.total}"
 
                         val topTypesText = if (stats.topTypes.isNotEmpty()) {
                             "Top 3 Tipos:\n" + stats.topTypes.joinToString("\n") {

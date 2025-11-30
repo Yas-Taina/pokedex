@@ -47,7 +47,7 @@
         android:minHeight="?attr/actionBarSize"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:popupTheme="@style/Pokedex.PopupMenu"
-        app:title="POKÉDEX v1.0"
+        app:title="POKÉDEX GLOBAL v1.0"
         app:titleTextAppearance="@style/TextAppearance.AppCompat.Body1"
         app:titleTextColor="#E0E0E0"
         android:layout_marginStart="16dp"

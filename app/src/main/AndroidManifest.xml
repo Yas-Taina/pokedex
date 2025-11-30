@@ -26,7 +26,7 @@
             android:name=".activities.EditPokemonActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.MyPokemonsActivity"
+            android:name=".activities.BDPokemonsActivity"
             android:exported="false" />
         <activity
             android:name=".activities.SelectAbilityMoveActivity"

@@ -1,9 +1,8 @@
 package com.example.pokedex.activities
 
 import android.os.Bundle
-import android.view.View
 import android.widget.*
-import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AlertDialog
 import com.example.pokedex.R
 import com.example.pokedex.api.RetrofitClient
 import com.example.pokedex.models.PokemonDetail
@@ -39,8 +38,7 @@ class SelectAbilityMoveActivity : BaseActivity() {
         spinnerAbility = findViewById(R.id.spinnerAbility)
         checkBoxContainer = findViewById(R.id.checkBoxContainer)
         btnConfirm = findViewById(R.id.btnConfirm)
-
-        tvPokemonName.text = "Pokémon: ${pokemonName.capitalize()}"
+        tvPokemonName.text = "Pokémon: ${pokemonName.replaceFirstChar { it.uppercase() }}"
 
         loadPokemonDetails()
 
@@ -67,11 +65,7 @@ class SelectAbilityMoveActivity : BaseActivity() {
                 }
 
                 override fun onFailure(call: Call<PokemonDetail>, t: Throwable) {
-                    Toast.makeText(
-                        this@SelectAbilityMoveActivity,
-                        "Erro ao carregar detalhes",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    Toast.makeText(this@SelectAbilityMoveActivity, "Erro ao carregar detalhes", Toast.LENGTH_SHORT).show()
                 }
             })
     }
@@ -89,17 +83,14 @@ class SelectAbilityMoveActivity : BaseActivity() {
         moves.forEach { move ->
             val checkBox = CheckBox(this)
             checkBox.text = move
+
             checkBox.setOnCheckedChangeListener { _, isChecked ->
                 if (isChecked) {
                     if (selectedMoves.size < 3) {
                         selectedMoves.add(move)
                     } else {
                         checkBox.isChecked = false
-                        Toast.makeText(
-                            this,
-                            "Máximo de 3 ataques",
-                            Toast.LENGTH_SHORT
-                        ).show()
+                        Toast.makeText(this, "Máximo de 3 ataques permitidos.", Toast.LENGTH_SHORT).show()
                     }
                 } else {
                     selectedMoves.remove(move)
@@ -113,12 +104,15 @@ class SelectAbilityMoveActivity : BaseActivity() {
         val ability = spinnerAbility.selectedItem?.toString()
 
         if (ability == null) {
-            Toast.makeText(this, "Selecione uma habilidade", Toast.LENGTH_SHORT).show()
+            showAlert("Atenção", "Selecione uma habilidade.")
             return
         }
-
         if (selectedMoves.isEmpty()) {
-            Toast.makeText(this, "Selecione pelo menos 1 ataque", Toast.LENGTH_SHORT).show()
+            showAlert("Atenção", "Selecione pelo menos 1 ataque.")
+            return
+        }
+        if (selectedMoves.size > 3) {
+            showAlert("Atenção", "Selecione no máximo 3 ataques.")
             return
         }
 
@@ -141,28 +135,34 @@ class SelectAbilityMoveActivity : BaseActivity() {
                     response: Response<Map<String, Any>>
                 ) {
                     if (response.isSuccessful) {
-                        Toast.makeText(
-                            this@SelectAbilityMoveActivity,
-                            "Pokémon registrado com sucesso!",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                        finish()
+                        val msg = response.body()?.get("message") as? String ?: "Sucesso!"
+                        showAlert("Registro Concluído", msg, closeOnDismiss = true)
                     } else {
-                        Toast.makeText(
-                            this@SelectAbilityMoveActivity,
-                            "Erro ao registrar pokémon",
-                            Toast.LENGTH_SHORT
-                        ).show()
+                        val errorMsg = when (response.code()) {
+                            409 -> "Você já possui um ${pokemonName.uppercase()} registrado."
+                            else -> "Falha ao registrar (Erro ${response.code()})"
+                        }
+                        showAlert("Erro no Registro", errorMsg)
                     }
                 }
 
                 override fun onFailure(call: Call<Map<String, Any>>, t: Throwable) {
-                    Toast.makeText(
-                        this@SelectAbilityMoveActivity,
-                        "Erro de conexão",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    showAlert("Erro de Conexão", "Falha ao conectar com o servidor.")
                 }
             })
+    }
+
+    private fun showAlert(title: String, message: String, closeOnDismiss: Boolean = false) {
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle(title)
+        builder.setMessage(message)
+        builder.setPositiveButton("OK") { dialog, _ ->
+            dialog.dismiss()
+            if (closeOnDismiss) {
+                finish()
+            }
+        }
+        builder.setCancelable(false)
+        builder.show()
     }
 }

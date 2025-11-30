@@ -108,9 +108,7 @@ class SearchByTypeActivity : BaseActivity() {
     }
 
     private fun searchRegisteredPokemons(type: String) {
-        val userLogin = sessionManager.getUserLogin() ?: return
-
-        RetrofitClient.apiService.searchByType(userLogin, type)
+        RetrofitClient.apiService.searchByType(type)
             .enqueue(object : Callback<List<RegisteredPokemon>> {
                 override fun onResponse(
                     call: Call<List<RegisteredPokemon>>,
