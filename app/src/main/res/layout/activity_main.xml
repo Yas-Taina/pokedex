@@ -105,65 +105,9 @@
                         android:textColor="#000000"/>
                 </LinearLayout>
 
-            </LinearLayout> <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp">
-
-            <View
-                android:id="@+id/btnDecorBlack"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:background="@drawable/bg_pokedex_screen"
-                android:backgroundTint="#222222"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                app:layout_constraintStart_toEndOf="@id/btnDecorBlack"
-                app:layout_constraintEnd_toStartOf="@id/ventContainer"
-                app:layout_constraintTop_toTopOf="@id/btnDecorBlack"
-                app:layout_constraintBottom_toBottomOf="@id/btnDecorBlack">
-
-                <View
-                    android:layout_width="40dp"
-                    android:layout_height="8dp"
-                    android:background="#89061C"
-                    android:layout_marginEnd="12dp"/>
-                <View
-                    android:layout_width="40dp"
-                    android:layout_height="8dp"
-                    android:background="#3B4CCA"/>
             </LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/ventContainer"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <View
-                    android:layout_width="30dp"
-                    android:layout_height="3dp"
-                    android:background="#222222"
-                    android:layout_marginBottom="3dp"/>
-                <View
-                    android:layout_width="30dp"
-                    android:layout_height="3dp"
-                    android:background="#222222"
-                    android:layout_marginBottom="3dp"/>
-                <View
-                    android:layout_width="30dp"
-                    android:layout_height="3dp"
-                    android:background="#222222"/>
-            </LinearLayout>
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
+            <include layout="@layout/layout_pokedex_footer"/>
 
         </LinearLayout>
     </ScrollView>
