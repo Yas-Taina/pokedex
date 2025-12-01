@@ -30,7 +30,7 @@
         app:layout_constraintTop_toTopOf="@id/headerBlueLens">
 
         <View android:layout_width="12dp" android:layout_height="12dp"
-            android:background="@drawable/bg_pokedex_screen" android:backgroundTint="#CC0000"
+            android:background="@drawable/bg_pokedex_screen" android:backgroundTint="#89061C"
             android:layout_marginEnd="6dp"/>
         <View android:layout_width="12dp" android:layout_height="12dp"
             android:background="@drawable/bg_pokedex_screen" android:backgroundTint="#FFCC00"

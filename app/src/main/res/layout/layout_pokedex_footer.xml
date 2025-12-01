@@ -9,10 +9,11 @@
         android:id="@+id/btnDecorBlack"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:background="@drawable/bg_pokedex_screen"
+        android:background="@drawable/bg_pokedex_round1"
         android:backgroundTint="#222222"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent">
+    </View>
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -28,12 +29,14 @@
             android:layout_width="40dp"
             android:layout_height="10dp"
             android:layout_marginEnd="12dp"
-            android:background="#89061C" />
+            android:background="@drawable/bg_pokedex_round2"
+            android:backgroundTint="#89061C"/>
 
         <View
             android:layout_width="40dp"
             android:layout_height="10dp"
-            android:background="#3B4CCA" />
+            android:background="@drawable/bg_pokedex_round1"
+            android:backgroundTint="#3B4CCA"/>
     </LinearLayout>
 
     <LinearLayout
@@ -48,25 +51,25 @@
 
         <View
             android:layout_width="30dp"
-            android:layout_height="3dp"
-            android:layout_marginBottom="3dp"
+            android:layout_height="4dp"
+            android:layout_marginBottom="4dp"
             android:background="#222222" />
 
         <View
             android:layout_width="30dp"
-            android:layout_height="3dp"
-            android:layout_marginBottom="3dp"
+            android:layout_height="4dp"
+            android:layout_marginBottom="4dp"
             android:background="#222222" />
 
         <View
             android:layout_width="30dp"
-            android:layout_height="3dp"
-            android:layout_marginBottom="3dp"
+            android:layout_height="4dp"
+            android:layout_marginBottom="4dp"
             android:background="#222222" />
 
         <View
             android:layout_width="30dp"
-            android:layout_height="3dp"
+            android:layout_height="4dp"
             android:background="#222222" />
     </LinearLayout>
 
