@@ -34,6 +34,7 @@
 
     <style name="Pokedex.MenuDividerStyle" parent="Widget.AppCompat.ListView.DropDown">
         <item name="android:divider">#D0D0D0</item>
+        <item name="android:paddingHorizontal">4dp</item>
         <item name="android:dividerHeight">1dp</item>
     </style>
 
