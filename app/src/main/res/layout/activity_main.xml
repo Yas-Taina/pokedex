@@ -60,19 +60,19 @@
                         android:background="@drawable/bg_style1"
                         android:gravity="center_vertical"
                         android:orientation="horizontal"
-                        android:padding="12dp">
+                        android:paddingVertical="12dp"
+                        android:paddingHorizontal="6dp">
 
                         <ImageView
                             android:layout_width="32dp"
                             android:layout_height="32dp"
-                            android:layout_marginEnd="8dp"
+                            android:layout_marginEnd="4dp"
                             android:src="@drawable/ic_pokeball" />
 
                         <TextView
                             android:id="@+id/tvTotalPokemons"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="2dp"
                             android:text="Pokémon Registrados: ?"
                             android:textColor="#333333"
                             android:textSize="18sp"
