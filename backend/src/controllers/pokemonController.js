@@ -148,7 +148,7 @@ exports.getHomeStats = async (req, res) => {
     );
 
     const abilitiesResult = await pool.query(
-      `SELECT ability, COUNT(*) as count
+      `SELECT unnest(string_to_array(ability, ',')) as ability, COUNT(*) as count
        FROM registered_pokemons
        GROUP BY ability
        ORDER BY count DESC

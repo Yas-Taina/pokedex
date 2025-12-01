@@ -28,7 +28,7 @@ const createTables = async () => {
         pokemon_id INTEGER NOT NULL,
         pokemon_name VARCHAR(100) NOT NULL,
         types TEXT NOT NULL,
-        ability VARCHAR(100) NOT NULL,
+        ability TEXT NOT NULL,
         moves TEXT NOT NULL,
         user_login VARCHAR(50) NOT NULL,
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
