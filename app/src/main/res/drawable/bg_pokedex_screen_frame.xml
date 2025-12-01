@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" >
+
+    <!-- center -->
+    <item
+        android:drawable="@drawable/pokedex_screen_center"
+        android:left="48dp"
+        android:right="48dp"
+        android:top="42dp"
+        android:bottom="72dp" />
+
+    <!-- left right -->
+    <item
+        android:drawable="@drawable/pokedex_screen_left"
+        android:top="42dp"
+        android:bottom="72dp"
+        android:left="0dp"
+        android:gravity="left"
+        android:width="48dp"/>
+
+    <item
+        android:drawable="@drawable/pokedex_screen_right"
+        android:top="42dp"
+        android:bottom="72dp"
+        android:gravity="right"
+        android:right="0dp"
+        android:width="48dp"/>
+
+    <!-- top bottom -->
+    <item
+        android:drawable="@drawable/pokedex_screen_top"
+        android:top="0dp"
+        android:right="48dp"
+        android:height="42dp"
+        android:left="48dp"
+        android:gravity="top"/>
+
+    <item
+        android:drawable="@drawable/pokedex_screen_bottom"
+        android:bottom="0dp"
+        android:right="48dp"
+        android:height="72dp"
+        android:left="48dp"
+        android:gravity="bottom"/>
+
+    <!-- corners -->
+    <item
+        android:drawable="@drawable/pokedex_screen_bottom_right"
+        android:width="48dp"
+        android:height="72dp"
+        android:bottom="0dp"
+        android:gravity="bottom|right"/>
+
+    <item
+        android:drawable="@drawable/pokedex_screen_top_right"
+        android:width="48dp"
+        android:height="42dp"
+        android:gravity="top|right"/>
+
+    <item
+        android:drawable="@drawable/pokedex_screen_top_left"
+        android:width="48dp"
+        android:height="42dp"
+        android:left="0dp"
+        android:gravity="top|left"/>
+
+    <item
+        android:drawable="@drawable/pokedex_screen_bottom_left"
+        android:width="48dp"
+        android:height="72dp"
+        android:left="0dp"
+        android:gravity="bottom|left"/>
+</layer-list>
