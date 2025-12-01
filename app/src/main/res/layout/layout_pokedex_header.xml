@@ -7,8 +7,8 @@
     android:background="@color/pokedex_red"
     android:paddingTop="16dp"
     android:paddingBottom="12dp"
-    android:paddingStart="16dp"
-    android:paddingEnd="16dp"
+    android:paddingStart="2dp"
+    android:paddingEnd="2dp"
     android:elevation="0dp">
 
     <View

@@ -1,8 +1,10 @@
 package com.example.pokedex.activities
 
 import android.os.Bundle
+import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.AppCompatButton
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pokedex.R
@@ -20,7 +22,9 @@ class SearchByTypeActivity : BaseActivity() {
     private lateinit var editType: EditText
     private lateinit var radioGroup: RadioGroup
     private lateinit var btnSearch: Button
+    private lateinit var btnVoltar: Button
     private lateinit var recyclerView: RecyclerView
+    private lateinit var filterSection: LinearLayout
     private lateinit var adapter: SearchResultAdapter
     private lateinit var sessionManager: SessionManager
 
@@ -33,7 +37,9 @@ class SearchByTypeActivity : BaseActivity() {
         editType = findViewById(R.id.editType)
         radioGroup = findViewById(R.id.radioGroup)
         btnSearch = findViewById(R.id.btnSearch)
+        btnVoltar = findViewById(R.id.btnVoltar)
         recyclerView = findViewById(R.id.recyclerView)
+        filterSection = findViewById(R.id.filterSection)
 
         recyclerView.layoutManager = LinearLayoutManager(this)
         adapter = SearchResultAdapter(emptyList(), isAbilitySearch = false)
@@ -41,6 +47,12 @@ class SearchByTypeActivity : BaseActivity() {
 
         btnSearch.setOnClickListener {
             searchByType()
+        }
+
+        btnVoltar.setOnClickListener {
+            btnVoltar.visibility = View.GONE
+            filterSection.visibility = View.VISIBLE
+            adapter.updateFromDatabase(emptyList())
         }
     }
 
@@ -87,6 +99,11 @@ class SearchByTypeActivity : BaseActivity() {
                             ).show()
                         }
 
+                        if (!pokemons.isEmpty()) {
+                            filterSection.visibility = View.GONE
+                            btnVoltar.visibility = View.VISIBLE
+                        }
+
                         adapter.updateFromPokeApi(pokemons)
                     } else {
                         Toast.makeText(
@@ -123,6 +140,11 @@ class SearchByTypeActivity : BaseActivity() {
                                 "Nenhum pokémon registrado com esse tipo",
                                 Toast.LENGTH_SHORT
                             ).show()
+                        }
+
+                        if (!pokemons.isEmpty()) {
+                            filterSection.visibility = View.GONE
+                            btnVoltar.visibility = View.VISIBLE
                         }
 
                         adapter.updateFromDatabase(pokemons)

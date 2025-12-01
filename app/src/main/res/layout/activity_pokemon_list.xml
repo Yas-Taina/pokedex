@@ -4,42 +4,63 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/pokedex_red"> <include
-    android:id="@+id/includeHeader"
-    layout="@layout/layout_pokedex_header" />
+    android:layout_marginHorizontal="8dp"
+    android:background="@color/pokedex_red">
+
+    <include
+        android:id="@+id/includeHeader"
+        layout="@layout/layout_pokedex_header" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingHorizontal="12dp"
-        android:paddingTop="16dp"
-        android:paddingBottom="8dp">
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:minHeight="400dp"
+        android:background="@drawable/bg_pokedex_screen_frame"
+        android:orientation="vertical"
+        android:paddingHorizontal="38dp"
+        android:paddingTop="30dp"
+        android:paddingBottom="62dp">
 
-        <EditText
-            android:id="@+id/editSearch"
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="@drawable/bg_pokedex_screen"
-            android:hint="Digite o nome do Pokémon..."
-            android:textColorHint="#888888"
-            android:inputType="text"
-            android:maxLines="1"
-            android:paddingStart="16dp"
-            android:paddingEnd="16dp"
-            android:drawableStart="@drawable/ic_search"
-            android:drawablePadding="12dp"
-            android:drawableTint="#333333"
-            android:fontFamily="monospace"
-            android:textSize="14sp"
-            android:elevation="4dp"/>
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="2dp">
+
+                <EditText
+                    android:id="@+id/editSearch"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:background="@drawable/bg_style1"
+                    android:hint="Digite o nome do Pokémon..."
+                    android:textColorHint="#888888"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp"
+                    android:drawableStart="@drawable/ic_search"
+                    android:drawablePadding="8dp"
+                    android:drawableTint="#333333"
+                    android:fontFamily="monospace"
+                    android:textSize="13sp" />
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingHorizontal="0dp"
+                android:layout_marginTop="2dp"
+                android:clipToPadding="false"
+                android:paddingBottom="0dp"/>
+        </LinearLayout>
     </LinearLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingHorizontal="12dp"
-        android:paddingTop="8dp"
-        android:clipToPadding="false"
-        android:paddingBottom="16dp"/>
+    <include layout="@layout/layout_pokedex_footer" />
 </LinearLayout>

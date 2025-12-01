@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:layout_marginHorizontal="8dp"
     android:background="@color/pokedex_red">
 
     <include android:id="@+id/includeHeader"
@@ -11,65 +12,79 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="16dp">
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:minHeight="400dp"
+        android:background="@drawable/bg_pokedex_screen_frame"
+        android:orientation="vertical"
+        android:paddingHorizontal="38dp"
+        android:paddingTop="30dp"
+        android:paddingBottom="62dp">
+
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:background="@drawable/bg_pokedex_screen"
-            android:padding="12dp"
-            android:elevation="4dp">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:background="@drawable/bg_style1"
-                android:gravity="center_vertical"
-                android:padding="12dp"
-                android:layout_marginBottom="12dp">
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@drawable/ic_list"
-                    android:layout_marginEnd="12dp"
-                    app:tint="#333333"/>
                 <LinearLayout
-                    android:layout_width="0dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
+                    android:orientation="horizontal"
+                    android:background="@drawable/bg_style1"
+                    android:gravity="center_vertical"
+                    android:padding="10dp"
+                    android:layout_marginTop="2dp">
 
-                    <TextView
-                        android:layout_width="wrap_content"
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_list"
+                        android:layout_marginEnd="12dp"
+                        app:tint="#333333"/>
+                    <LinearLayout
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="PC DE ARMAZENAMENTO"
-                        android:textSize="10sp"
-                        android:textStyle="bold"
-                        android:textColor="#666666"/>
+                        android:layout_weight="1"
+                        android:orientation="vertical">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="POKÉMON REGISTRADOS"
-                        android:fontFamily="monospace"
-                        android:textSize="16sp"
-                        android:textStyle="bold"
-                        android:textColor="#202020" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="PC DE ARMAZENAMENTO"
+                            android:textSize="10sp"
+                            android:textStyle="bold"
+                            android:textColor="#666666"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="POKÉMON REGISTRADOS"
+                            android:fontFamily="monospace"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            android:textColor="#202020" />
+                    </LinearLayout>
                 </LinearLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="2dp"
+                    android:clipToPadding="false" />
+
             </LinearLayout>
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerView"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:clipToPadding="false"
-                android:paddingBottom="8dp"/>
-
         </LinearLayout>
+
     </LinearLayout>
+
+    <include layout="@layout/layout_pokedex_footer" />
 
 </LinearLayout>
