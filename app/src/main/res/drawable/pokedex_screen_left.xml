@@ -14,11 +14,11 @@
       android:pathData="m0,0 l-0,12.518l0.158,0l0,-12.518z"/>
   <path
       android:fillColor="#FF000000"
-      android:pathData="m0.389,0 l0.001,12.518l0.158,0l-0.001,-12.518z"/>
+      android:pathData="m0.389,0 l0.001,12.518l0.189,0l-0.001,-12.518z"/>
   <path
       android:pathData="M3.071,0L3.071,12.518l1.693,0L4.764,0Z"
       android:fillColor="#f4f4f4"/>
   <path
-      android:fillColor="#FF000000"
-      android:pathData="m3.025,0 l-0.003,12.518l0.158,0l0.003,-12.518z"/>
+      android:pathData="m3.025,0 l-0.003,12.518l0.189,0l0.003,-12.518z"
+      android:fillColor="#6e6e6e"/>
 </vector>

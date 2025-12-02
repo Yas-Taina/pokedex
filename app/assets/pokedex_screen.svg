@@ -26,11 +26,11 @@
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="mm"
-     inkscape:zoom="45.254834"
-     inkscape:cx="84.035221"
-     inkscape:cy="57.098873"
-     inkscape:window-width="1937"
-     inkscape:window-height="1102"
+     inkscape:zoom="4"
+     inkscape:cx="137.375"
+     inkscape:cy="110.625"
+     inkscape:window-width="1894"
+     inkscape:window-height="991"
      inkscape:window-x="12"
      inkscape:window-y="10"
      inkscape:window-maximized="0"
@@ -43,11 +43,11 @@
        inkscape:collect="always">
       <stop
          style="stop-color:#b4b1b1;stop-opacity:1;"
-         offset="0.44368064"
+         offset="0.52369142"
          id="stop1" />
       <stop
          style="stop-color:#827d7d;stop-opacity:1;"
-         offset="0.9418121"
+         offset="0.7100637"
          id="stop2" />
     </linearGradient>
     <inkscape:path-effect
@@ -242,18 +242,20 @@
       <path
          id="path14"
          style="baseline-shift:baseline;display:inline;overflow:visible;vector-effect:none;enable-background:accumulate;stop-color:#000000"
-         d="m 43.867187,11.923828 v 0.158203 h 2.275391 c 1.047962,0 1.896485,0.848523 1.896484,1.896485 v 1.789062 h 0.160157 v -1.789062 c 0,-1.134737 -0.921939,-2.054688 -2.056641,-2.054688 z"
+         d="m 43.867187,11.923828 v 0.189209 h 2.275391 c 1.047962,0 1.865053,0.817517 1.865053,1.865479 v 1.789062 h 0.191588 v -1.789062 c 0,-1.134737 -0.921939,-2.054688 -2.056641,-2.054688 z"
          inkscape:export-filename="path_tr.svg"
          inkscape:export-xdpi="1200"
-         inkscape:export-ydpi="1200" />
+         inkscape:export-ydpi="1200"
+         sodipodi:nodetypes="ccssccssc" />
       <path
          id="path17"
          style="baseline-shift:baseline;display:inline;overflow:visible;vector-effect:none;fill:#f4f4f4;enable-background:accumulate;stop-color:#000000"
          d="m 43.867187,14.205078 v 1.5625 h 1.625 v -0.0957 c 0,-0.814406 -0.703404,-1.466797 -1.576171,-1.466797 z" />
       <path
          id="path18"
-         style="baseline-shift:baseline;display:inline;overflow:visible;vector-effect:none;enable-background:accumulate;stop-color:#000000"
-         d="M 43.867187,14.154297 V 14.3125 h 0.04883 c 0.817542,0 1.46875,0.608892 1.46875,1.359375 v 0.0957 h 0.158203 v -0.0957 c 0,-0.84332 -0.729165,-1.517578 -1.626953,-1.517578 z" />
+         style="baseline-shift:baseline;display:inline;overflow:visible;vector-effect:none;enable-background:accumulate;stop-color:#000000;fill:#6e6e6e;fill-opacity:1"
+         d="m 43.867187,14.154297 v 0.189209 h 0.04883 c 0.817542,0 1.4243,0.577886 1.4243,1.328369 v 0.0957 h 0.202653 v -0.0957 c 0,-0.84332 -0.729165,-1.517578 -1.626953,-1.517578 z"
+         sodipodi:nodetypes="ccssccssc" />
     </g>
     <g
        id="g82"
@@ -274,18 +276,20 @@
       <path
          id="path63"
          style="baseline-shift:baseline;display:inline;overflow:visible;vector-effect:none;enable-background:accumulate;stop-color:#000000"
-         d="M 48.039062,15.708984 V 28.34375 h 0.160157 V 15.708984 Z"
+         d="m 48.007631,15.708984 0.0018,12.634766 h 0.18979 V 15.708984 Z"
          inkscape:export-filename="path_r.svg"
          inkscape:export-xdpi="1200"
-         inkscape:export-ydpi="1200" />
+         inkscape:export-ydpi="1200"
+         sodipodi:nodetypes="ccccc" />
       <path
          id="path40"
          style="baseline-shift:baseline;display:inline;overflow:visible;vector-effect:none;fill:#f4f4f4;enable-background:accumulate;stop-color:#000000"
          d="M 43.867187,15.708984 V 28.34375 h 1.625 V 15.708984 Z" />
       <path
          id="path48"
-         style="baseline-shift:baseline;display:inline;overflow:visible;vector-effect:none;enable-background:accumulate;stop-color:#000000"
-         d="M 45.384766,15.708984 V 28.34375 h 0.158203 V 15.708984 Z" />
+         style="baseline-shift:baseline;display:inline;overflow:visible;vector-effect:none;enable-background:accumulate;stop-color:#000000;fill:#6e6e6e;fill-opacity:1"
+         d="m 45.340316,15.708984 0,12.634766 h 0.202653 V 15.708984 Z"
+         sodipodi:nodetypes="ccccc" />
     </g>
     <g
        id="g83"
@@ -305,21 +309,23 @@
          d="m 43.867187,28.285156 v 5.628906 h 2.40625 c 1.035772,-1.46e-4 1.875143,-0.839222 1.875,-1.875 v -3.753906 z" />
       <path
          id="path69"
-         d="m 48.039062,28.550781 v 4.598915 c 0,0.976113 -0.789551,1.451866 -1.765625,1.451866 h -2.40625 v 0.158204 h 2.40625 c 1.062844,0 1.925782,-0.547226 1.925782,-1.61007 v -4.598915 z"
+         d="m 48.009429,28.550781 v 4.598915 c 0,0.976113 -0.759918,1.42086 -1.735992,1.42086 h -2.40625 v 0.18921 h 2.40625 c 1.062844,0 1.925782,-0.547226 1.925782,-1.61007 v -4.598915 z"
          style="baseline-shift:baseline;display:inline;overflow:visible;vector-effect:none;enable-background:accumulate;stop-color:#000000"
          sodipodi:nodetypes="cssccsscc" />
       <path
          id="path62"
          style="baseline-shift:baseline;display:inline;overflow:visible;vector-effect:none;enable-background:accumulate;stop-color:#000000"
-         d="m 48.039062,28.285156 v 3.753906 c 0,0.976113 -0.789551,1.767579 -1.765625,1.767579 h -2.40625 v 0.158203 h 2.40625 c 1.062844,0 1.925782,-0.862938 1.925782,-1.925782 v -3.753906 z" />
+         d="m 48.009726,28.285156 v 3.753906 c 0,0.976113 -0.760215,1.736573 -1.736289,1.736573 h -2.40625 v 0.189209 h 2.40625 c 1.062844,0 1.925782,-0.862938 1.925782,-1.925782 v -3.753906 z"
+         sodipodi:nodetypes="cssccsscc" />
       <path
          id="path41"
          style="baseline-shift:baseline;display:inline;overflow:visible;vector-effect:none;fill:#f4f4f4;enable-background:accumulate;stop-color:#000000"
          d="m 43.867187,28.285156 v 1.59375 h 0.04883 c 0.872813,0 1.576171,-0.654345 1.576171,-1.46875 v -0.125 z" />
       <path
          id="path47"
-         style="baseline-shift:baseline;display:inline;overflow:visible;vector-effect:none;enable-background:accumulate;stop-color:#000000"
-         d="m 45.384766,28.285156 v 0.125 c 0,0.750483 -0.651208,1.359375 -1.46875,1.359375 h -0.04883 v 0.158203 h 0.04883 c 0.897788,0 1.626953,-0.674258 1.626953,-1.517578 v -0.125 z" />
+         style="baseline-shift:baseline;display:inline;overflow:visible;vector-effect:none;enable-background:accumulate;stop-color:#000000;fill:#6e6e6e;fill-opacity:1"
+         d="m 45.340316,28.285156 v 0.125 c 0,0.750483 -0.606758,1.327928 -1.4243,1.327928 h -0.04883 v 0.18965 h 0.04883 c 0.897788,0 1.626953,-0.674258 1.626953,-1.517578 v -0.125 z"
+         sodipodi:nodetypes="cssccsscc" />
     </g>
     <g
        id="g84"
@@ -332,16 +338,18 @@
       <path
          id="path75"
          style="baseline-shift:baseline;display:inline;overflow:visible;vector-effect:none;fill:#b4b1b1;fill-opacity:1;enable-background:accumulate;stop-color:#000000"
-         d="m 25.027344,28.550781 v 6.158203 h 18.898437 v -6.158203 z"
-         inkscape:original-d="m 25.056868,28.580109 v 6.099886 h 18.838644 v -6.099886 z" />
+         d="m 25.027344,28.550781 -0.002,6.158203 h 18.898437 v -6.158203 z"
+         inkscape:original-d="m 25.056868,28.580109 -0.0021,6.099886 h 18.840717 v -6.099886 z"
+         sodipodi:nodetypes="ccccc" />
       <path
          id="path68"
          style="baseline-shift:baseline;display:inline;overflow:visible;vector-effect:none;enable-background:accumulate;stop-color:#000000"
-         d="m 25.027344,34.601562 v 0.158204 h 18.898437 v -0.158204 z"
+         d="m 25.027344,34.570312 v 0.189454 h 18.898437 v -0.189454 z"
          inkscape:export-filename="path_bottom.svg"
          inkscape:export-xdpi="1200"
          inkscape:export-ydpi="1200"
-         inkscape:original-d="m 25.056868,34.630902 v 0.09922 h 18.838644 v -0.09922 z" />
+         inkscape:original-d="m 25.056868,34.599602 v 0.13052 h 18.838644 v -0.130226 z"
+         sodipodi:nodetypes="ccccc" />
       <path
          id="path53"
          style="baseline-shift:baseline;display:inline;overflow:visible;vector-effect:none;fill:#d4d2d0;enable-background:accumulate;stop-color:#000000"
@@ -350,18 +358,21 @@
       <path
          id="path61"
          style="baseline-shift:baseline;display:inline;overflow:visible;vector-effect:none;enable-background:accumulate;stop-color:#000000"
-         d="m 25.027344,33.806641 v 0.158203 h 18.898437 v -0.158203 z"
-         inkscape:original-d="m 25.056868,33.836178 v 0.09922 h 18.838644 v -0.09922 z" />
+         d="m 25.027344,33.775391 v 0.189453 h 18.898437 v -0.189453 z"
+         inkscape:original-d="m 25.056868,33.804878 v 0.13052 h 18.838644 v -0.130226 z"
+         sodipodi:nodetypes="ccccc" />
       <path
          id="path38"
          style="baseline-shift:baseline;display:inline;overflow:visible;vector-effect:none;fill:#f4f4f4;enable-background:accumulate;stop-color:#000000"
-         d="m 25.027344,28.285156 v 1.59375 h 18.898437 v -1.59375 z"
-         inkscape:original-d="m 25.056868,28.314551 v 1.534273 h 18.838644 v -1.534273 z" />
+         d="m 25.025391,28.285156 v 1.59375 h 18.90039 v -1.59375 z"
+         inkscape:original-d="m 25.054795,28.314551 -0.001,1.534273 h 18.841754 v -1.534273 z"
+         sodipodi:nodetypes="ccccc" />
       <path
          id="path46"
-         style="baseline-shift:baseline;display:inline;overflow:visible;vector-effect:none;enable-background:accumulate;stop-color:#000000"
-         d="m 25.027344,29.769531 v 0.158203 h 18.898437 v -0.158203 z"
-         inkscape:original-d="m 25.056868,29.798698 v 0.09973 h 18.838644 v -0.09973 z" />
+         style="baseline-shift:baseline;display:inline;overflow:visible;vector-effect:none;enable-background:accumulate;stop-color:#000000;fill:#6e6e6e;fill-opacity:1"
+         d="m 25.027344,29.738281 v 0.189453 h 18.898437 v -0.189453 z"
+         inkscape:original-d="m 25.056868,29.767692 v 0.130736 h 18.838644 v -0.130143 z"
+         sodipodi:nodetypes="ccccc" />
     </g>
     <g
        id="g85"
@@ -369,21 +380,21 @@
        inkscape:export-xdpi="1200"
        inkscape:export-ydpi="1200"
        inkscape:label="bottom_left"
-       transform="matrix(0.99999459,0,0,0.99999999,8.8928963e-5,5.8246764e-7)">
+       transform="matrix(0.99959266,0,0,1,0.00825708,1.4519418e-7)">
       <path
          id="path76"
          style="baseline-shift:baseline;display:inline;overflow:visible;vector-effect:none;fill:#969292;fill-opacity:1;enable-background:accumulate;stop-color:#000000"
-         d="m 20.388725,28.285156 0.0038,2.583985 4.373047,3.839843 h 0.320312 l 5.3e-5,-6.423828 z"
+         d="m 20.388725,28.285156 0.0038,2.583985 4.378894,3.84569 0.314465,-0.0048 5.3e-5,-6.424862 z"
          sodipodi:nodetypes="cccccc" />
       <path
          id="path1"
          style="baseline-shift:baseline;display:inline;overflow:visible;vector-effect:none;fill:#b4b1b1;fill-opacity:1;enable-background:accumulate;stop-color:#000000"
-         d="m 24.78737,33.882808 -0.02175,0.826176 h 0.320312 v -0.826176 z"
+         d="m 24.772754,33.882808 -0.0013,0.832023 0.316533,-0.0058 -2.8e-5,-0.824109 z"
          sodipodi:nodetypes="ccccc" />
       <path
          id="path67"
          style="baseline-shift:baseline;display:inline;overflow:visible;vector-effect:none;enable-background:accumulate;stop-color:#000000"
-         d="m 20.322196,28.285156 0.0039,2.606177 4.383955,3.869141 h 0.377845 V 34.60227 h -0.315345 l -4.288252,-3.785156 -0.0039,-2.531958 z"
+         d="m 20.322196,28.285156 0.0039,2.606177 4.383955,3.869141 h 0.377845 v -0.18921 h -0.315345 l -4.288252,-3.75415 -0.0039,-2.531958 z"
          inkscape:export-filename="path_bl.svg"
          inkscape:export-xdpi="1200"
          inkscape:export-ydpi="1200"
@@ -391,21 +402,23 @@
       <path
          id="path54"
          style="baseline-shift:baseline;display:inline;overflow:visible;vector-effect:none;fill:#d4d2d0;enable-background:accumulate;stop-color:#000000"
-         d="m 20.840807,28.285156 0.002,2.055713 3.922865,3.573193 h 0.320312 v -5.628906 z"
+         d="m 20.840807,28.285156 0.002,2.055713 3.922865,3.573193 0.322227,0 0,-5.628906 z"
          sodipodi:nodetypes="cccccc" />
       <path
          id="path60"
          style="baseline-shift:baseline;display:inline;overflow:visible;vector-effect:none;enable-background:accumulate;stop-color:#000000"
-         d="m 20.71134,28.285156 0.002,2.116471 4.062034,3.563217 h 0.31061 v -0.158203 h -0.248157 l -3.966331,-3.479233 -0.002,-2.042252 z"
+         d="m 20.71134,28.285156 0.002,2.116471 4.062034,3.563217 h 0.312678 v -0.189209 h -0.250225 l -3.935325,-3.448227 -0.002,-2.042252 z"
          sodipodi:nodetypes="ccccccccc" />
       <path
          id="path39"
          style="baseline-shift:baseline;display:inline;overflow:visible;vector-effect:none;fill:#f4f4f4;enable-background:accumulate;stop-color:#000000"
-         d="m 23.392578,28.285156 v 0.125 c 0,0.814454 0.705312,1.46875 1.578125,1.46875 h 0.115234 v -1.59375 z" />
+         d="m 23.392578,28.285156 v 0.125 c 0,0.814454 0.705312,1.46875 1.578125,1.46875 h 0.115234 v -1.59375 z"
+         sodipodi:nodetypes="cssccc" />
       <path
          id="path45"
-         style="baseline-shift:baseline;display:inline;overflow:visible;vector-effect:none;enable-background:accumulate;stop-color:#000000"
-         d="m 23.34375,28.285156 v 0.125 c 0,0.84332 0.729164,1.517578 1.626953,1.517578 h 0.115234 v -0.158203 h -0.115234 c -0.817542,0 -1.46875,-0.608892 -1.46875,-1.359375 v -0.125 z" />
+         style="baseline-shift:baseline;display:inline;overflow:visible;vector-effect:none;fill:#6e6e6e;fill-opacity:1;enable-background:accumulate;stop-color:#000000"
+         d="m 23.34375,28.285156 v 0.125 c 0,0.84332 0.729164,1.517578 1.626953,1.517578 l 0.117196,0 v -0.189453 l -0.117196,2.44e-4 c -0.81754,0.0017 -1.437744,-0.577886 -1.437744,-1.328369 v -0.125 z"
+         sodipodi:nodetypes="cssccsscc" />
     </g>
     <g
        id="g79"
@@ -428,7 +441,7 @@
       <path
          id="path59"
          style="baseline-shift:baseline;display:inline;overflow:visible;vector-effect:none;enable-background:accumulate;stop-color:#000000"
-         d="m 20.709207,15.708984 7.52e-4,12.634766 h 0.158204 l -7.52e-4,-12.634766 z"
+         d="m 20.709207,15.708984 7.52e-4,12.634766 h 0.189223 l -0.0011,-12.634766 z"
          inkscape:export-filename="path_l.svg"
          inkscape:export-xdpi="1200"
          inkscape:export-ydpi="1200"
@@ -439,8 +452,8 @@
          d="M 23.392578,15.708984 V 28.34375 h 1.693359 V 15.708984 Z" />
       <path
          id="path44"
-         style="baseline-shift:baseline;display:inline;overflow:visible;vector-effect:none;enable-background:accumulate;stop-color:#000000"
-         d="m 23.346852,15.708984 -0.0031,12.634766 h 0.158203 l 0.0031,-12.634766 z"
+         style="baseline-shift:baseline;display:inline;overflow:visible;vector-effect:none;enable-background:accumulate;stop-color:#000000;fill:#6e6e6e;fill-opacity:1"
+         d="m 23.346852,15.708984 -0.0031,12.634766 h 0.189222 l 0.0031,-12.634766 z"
          sodipodi:nodetypes="ccccc" />
     </g>
     <g
@@ -462,17 +475,17 @@
       <path
          id="path65"
          style="baseline-shift:baseline;display:inline;overflow:visible;vector-effect:none;enable-background:accumulate;stop-color:#000000"
-         d="m 22.003906,11.923828 c -0.931878,0 -1.296347,0.608547 -1.294922,1.535156 l 0.002,2.308594 h 0.158204 l -0.002,-2.308594 c -6.44e-4,-0.425592 0.0774,-0.770897 0.25586,-1.007812 0.08923,-0.118458 0.202527,-0.210444 0.347656,-0.273438 0.14513,-0.06299 0.321804,-0.09766 0.533203,-0.09766 h 3.082031 v -0.15625 z"
+         d="m 22.003906,11.923828 c -0.931878,0 -1.296347,0.608547 -1.294922,1.535156 l 0.002,2.308594 h 0.189454 l -0.0039,-2.308594 c -6.45e-4,-0.425933 0.06901,-0.771101 0.240235,-1.007812 0.08561,-0.118356 0.197572,-0.21053 0.339843,-0.273438 0.142272,-0.06291 0.315945,-0.09766 0.527344,-0.09766 h 3.082031 v -0.15625 z"
          sodipodi:nodetypes="csccccscc"
-         inkscape:original-d="m 25.055825,11.952476 h -3.051484 c -0.912498,0 -1.267476,0.593436 -1.266072,1.505933 l 0.0026,2.280165 h 0.09974 l -0.0026,-2.280165 c -0.0013,-0.858398 0.307937,-1.406714 1.166336,-1.406714 h 3.051484 z" />
+         inkscape:original-d="m 25.055825,11.952476 h -3.051484 c -0.912498,0 -1.267476,0.593436 -1.266072,1.505933 l 0.0026,2.280165 h 0.129712 l -0.0026,-2.280165 c -0.0013,-0.858398 0.277965,-1.406714 1.136364,-1.406714 h 3.051484 z" />
       <path
          id="path58"
          style="baseline-shift:baseline;display:inline;overflow:visible;vector-effect:none;enable-background:accumulate;stop-color:#000000"
-         d="m 21.998047,11.923828 c -0.9292,0 -1.677211,0.754556 -1.675781,1.683594 v 2.160156 h 0.158203 v -2.160156 c -0.0013,-0.842312 0.675392,-1.525391 1.517578,-1.525391 h 3.08789 v -0.158203 z"
+         d="m 21.998047,11.923828 c -0.9292,0 -1.677211,0.754556 -1.675781,1.683594 v 2.160156 h 0.158203 v -2.160156 c -6.38e-4,-0.421157 0.169324,-0.794367 0.443359,-1.0625 0.274035,-0.268133 0.652762,-0.431641 1.074219,-0.431641 h 3.08789 v -0.189453 z"
          inkscape:export-filename="path_tl.svg"
          inkscape:export-xdpi="1200"
          inkscape:export-ydpi="1200"
-         inkscape:original-d="M 25.056868,11.953276 H 21.99814 c -0.912498,0 -1.647815,0.741665 -1.646411,1.654162 l -0.001,2.131136 h 0.09973 l 0.001,-2.131136 c -0.0013,-0.858398 0.688276,-1.554944 1.546675,-1.554944 h 3.058728 z"
+         inkscape:original-d="M 25.056868,11.953276 H 21.99814 c -0.912498,0 -1.647815,0.741665 -1.646411,1.654162 l -10e-4,2.131136 h 0.09973 l 0.001,-2.131136 C 20.450159,12.74904 21.139735,12.0835 21.998134,12.0835 h 3.058728 z"
          sodipodi:nodetypes="csccccscc" />
       <path
          id="path35"
@@ -481,9 +494,9 @@
          inkscape:original-d="m 25.056868,14.233757 h -0.08682 c -0.857394,0 -1.547709,0.641455 -1.547709,1.438155 v 0.06666 h 1.634525 z" />
       <path
          id="path43"
-         style="baseline-shift:baseline;display:inline;overflow:visible;vector-effect:none;enable-background:accumulate;stop-color:#000000"
-         d="m 24.970703,14.154297 c -0.897779,0 -1.623047,0.674364 -1.623047,1.517578 v 0.0957 h 0.158203 v -0.0957 c 0,-0.750595 0.647293,-1.359376 1.464844,-1.359375 h 0.115234 v -0.158203 z"
-         inkscape:original-d="m 25.056868,14.18363 h -0.0863 c -0.882329,0 -1.593185,0.662703 -1.593185,1.488282 v 0.06666 h 0.09922 v -0.06666 c 0,-0.76782 0.661508,-1.388547 1.493966,-1.388546 h 0.0863 z"
+         style="baseline-shift:baseline;display:inline;overflow:visible;vector-effect:none;enable-background:accumulate;stop-color:#000000;fill:#6e6e6e;fill-opacity:1"
+         d="m 24.970703,14.154297 c -0.897779,0 -1.623047,0.674364 -1.623047,1.517578 v 0.0957 h 0.189453 v -0.0957 c 0,-0.375704 0.154272,-0.707311 0.410157,-0.945312 0.255884,-0.238002 0.614286,-0.382813 1.023437,-0.382813 h 0.115234 v -0.189453 z"
+         inkscape:original-d="m 25.056868,14.18363 h -0.0863 c -0.882329,0 -1.593185,0.662703 -1.593185,1.488282 v 0.06666 h 0.130226 v -0.06666 c 0,-0.76782 0.630502,-1.35754 1.46296,-1.35754 h 0.0863 z"
          sodipodi:nodetypes="cssccsscc" />
     </g>
     <g
@@ -509,11 +522,11 @@
       <path
          id="path57"
          style="baseline-shift:baseline;display:inline;overflow:visible;vector-effect:none;enable-background:accumulate;stop-color:#000000"
-         d="m 25.027344,11.923828 v 0.158203 h 18.898437 v -0.158203 z"
+         d="m 25.027344,11.923828 v 0.189453 h 18.898437 v -0.189453 z"
          inkscape:export-filename="path_t.svg"
          inkscape:export-xdpi="1200"
          inkscape:export-ydpi="1200"
-         inkscape:original-d="m 25.056868,11.953276 v 0.09922 h 18.838644 v -0.09922 z"
+         inkscape:original-d="m 25.056868,11.953276 v 0.130226 h 18.838644 v -0.130226 z"
          sodipodi:nodetypes="ccccc" />
       <path
          id="path34"
@@ -522,9 +535,10 @@
          inkscape:original-d="m 25.056868,14.233757 v 1.504817 h 18.838644 v -1.504817 z" />
       <path
          id="path42"
-         style="baseline-shift:baseline;display:inline;overflow:visible;vector-effect:none;enable-background:accumulate;stop-color:#000000"
-         d="M 25.027344,14.154297 V 14.3125 h 18.898437 v -0.158203 z"
-         inkscape:original-d="m 25.056868,14.18363 v 0.09974 h 18.838644 v -0.09974 z" />
+         style="baseline-shift:baseline;display:inline;overflow:visible;vector-effect:none;enable-background:accumulate;stop-color:#000000;fill:#6e6e6e;fill-opacity:1"
+         d="M 25.027344,14.154297 V 14.34375 H 43.925781 V 14.154297 Z"
+         inkscape:original-d="m 25.056868,14.18363 v 0.130746 l 18.838644,-7.4e-4 V 14.18363 Z"
+         sodipodi:nodetypes="ccccc" />
     </g>
     <path
        id="path22"
