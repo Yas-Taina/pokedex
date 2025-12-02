@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import com.example.pokedex.R
+import com.example.pokedex.api.AbilityListResponse
 import com.example.pokedex.api.RetrofitClient
 import com.example.pokedex.models.PokemonDetail
 import com.example.pokedex.models.RegisteredPokemon
@@ -15,22 +16,25 @@ import retrofit2.Response
 class EditPokemonActivity : BaseActivity() {
 
     private lateinit var tvPokemonName: TextView
-    private lateinit var spinnerAbility: Spinner
-    private lateinit var checkBoxContainer: LinearLayout
+    private lateinit var checkBoxAbilityContainer: LinearLayout
+    private lateinit var checkBoxMoveContainer: LinearLayout
     private lateinit var btnUpdate: Button
 
     private var pokemonDbId = 0
     private var pokemonApiId = 0
+    private val selectedAbilities = mutableListOf<String>()
     private val selectedMoves = mutableListOf<String>()
+    private var currentAbilities = listOf<String>()
     private var currentMoves = listOf<String>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_pokemon)
+
         pokemonDbId = intent.getIntExtra("pokemon_id", 0)
         tvPokemonName = findViewById(R.id.tvPokemonName)
-        spinnerAbility = findViewById(R.id.spinnerAbility)
-        checkBoxContainer = findViewById(R.id.checkBoxContainer)
+        checkBoxAbilityContainer = findViewById(R.id.checkBoxAbilityContainer)
+        checkBoxMoveContainer = findViewById(R.id.checkBoxMoveContainer)
         btnUpdate = findViewById(R.id.btnUpdate)
 
         if (pokemonDbId != 0) {
@@ -53,10 +57,14 @@ class EditPokemonActivity : BaseActivity() {
                         if (pokemon != null) {
                             pokemonApiId = pokemon.pokemon_id
                             tvPokemonName.text = "Editando: ${pokemon.pokemon_name.replaceFirstChar { it.uppercase() }}"
+                            currentAbilities = pokemon.ability.split(",").map { it.trim() }
                             currentMoves = pokemon.moves.split(",").map { it.trim() }
+                            selectedAbilities.clear()
+                            selectedAbilities.addAll(currentAbilities)
                             selectedMoves.clear()
                             selectedMoves.addAll(currentMoves)
-                            loadPokemonDetailsFromApi(pokemon.ability)
+                            loadPokemonDetailsFromApi()
+                            loadAllAbilities()
                         }
                     } else {
                         showAlert("Erro", "Não foi possível carregar os dados atuais.")
@@ -69,14 +77,13 @@ class EditPokemonActivity : BaseActivity() {
             })
     }
 
-    private fun loadPokemonDetailsFromApi(currentAbility: String) {
+    private fun loadPokemonDetailsFromApi() {
         RetrofitClient.pokeApiService.getPokemonDetail(pokemonApiId)
             .enqueue(object : Callback<PokemonDetail> {
                 override fun onResponse(call: Call<PokemonDetail>, response: Response<PokemonDetail>) {
                     if (response.isSuccessful) {
                         val pokemon = response.body()
                         if (pokemon != null) {
-                            setupAbilities(pokemon, currentAbility)
                             setupMoves(pokemon)
                         }
                     }
@@ -87,22 +94,54 @@ class EditPokemonActivity : BaseActivity() {
             })
     }
 
-    private fun setupAbilities(pokemon: PokemonDetail, currentAbility: String) {
-        val abilities = pokemon.abilities.map { it.ability.name }
-        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, abilities)
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        spinnerAbility.adapter = adapter
+    private fun loadAllAbilities() {
+        RetrofitClient.pokeApiService.getAllAbilities()
+            .enqueue(object : Callback<AbilityListResponse> {
+                override fun onResponse(
+                    call: Call<AbilityListResponse>,
+                    response: Response<AbilityListResponse>
+                ) {
+                    if (response.isSuccessful) {
+                        val abilities = response.body()?.results?.map { it.name } ?: emptyList()
+                        setupAbilities(abilities)
+                    }
+                }
 
-        val currentIndex = abilities.indexOf(currentAbility)
-        if (currentIndex >= 0) {
-            spinnerAbility.setSelection(currentIndex)
+                override fun onFailure(call: Call<AbilityListResponse>, t: Throwable) {
+                    showAlert("Erro", "Falha ao carregar habilidades da API.")
+                }
+            })
+    }
+
+    private fun setupAbilities(abilities: List<String>) {
+        checkBoxAbilityContainer.removeAllViews()
+
+        abilities.forEach { ability ->
+            val checkBox = CheckBox(this)
+            checkBox.text = ability
+
+            checkBox.isChecked = currentAbilities.contains(ability)
+
+            checkBox.setOnCheckedChangeListener { _, isChecked ->
+                if (isChecked) {
+                    if (selectedAbilities.size < 3) {
+                        selectedAbilities.add(ability)
+                    } else {
+                        checkBox.isChecked = false
+                        Toast.makeText(this, "Máximo de 3 habilidades permitidas.", Toast.LENGTH_SHORT).show()
+                    }
+                } else {
+                    selectedAbilities.remove(ability)
+                }
+            }
+            checkBoxAbilityContainer.addView(checkBox)
         }
     }
 
     private fun setupMoves(pokemon: PokemonDetail) {
-        val allMoves = pokemon.moves.take(20).map { it.move.name }
+        val allMoves = pokemon.moves.map { it.move.name }
 
-        checkBoxContainer.removeAllViews()
+        checkBoxMoveContainer.removeAllViews()
 
         allMoves.forEach { move ->
             val checkBox = CheckBox(this)
@@ -112,25 +151,23 @@ class EditPokemonActivity : BaseActivity() {
 
             checkBox.setOnCheckedChangeListener { _, isChecked ->
                 if (isChecked) {
-                    if (selectedMoves.size < 3) {
-                        selectedMoves.add(move)
-                    } else {
-                        checkBox.isChecked = false
-                        Toast.makeText(this, "Máximo de 3 ataques permitidos.", Toast.LENGTH_SHORT).show()
-                    }
+                    selectedMoves.add(move)
                 } else {
                     selectedMoves.remove(move)
                 }
             }
-            checkBoxContainer.addView(checkBox)
+            checkBoxMoveContainer.addView(checkBox)
         }
     }
 
     private fun updatePokemon() {
-        val ability = spinnerAbility.selectedItem?.toString()
+        if (selectedAbilities.isEmpty()) {
+            showAlert("Atenção", "Selecione pelo menos 1 habilidade.")
+            return
+        }
 
-        if (ability == null) {
-            showAlert("Atenção", "Selecione uma habilidade.")
+        if (selectedAbilities.size > 3) {
+            showAlert("Atenção", "Selecione no máximo 3 habilidades.")
             return
         }
 
@@ -139,13 +176,9 @@ class EditPokemonActivity : BaseActivity() {
             return
         }
 
-        if (selectedMoves.size > 3) {
-            showAlert("Atenção", "Selecione no máximo 3 ataques.")
-            return
-        }
-
+        val abilitiesString = selectedAbilities.joinToString(",")
         val movesString = selectedMoves.joinToString(",")
-        val request = UpdatePokemonRequest(ability, movesString)
+        val request = UpdatePokemonRequest(abilitiesString, movesString)
 
         RetrofitClient.apiService.updatePokemon(pokemonDbId, request)
             .enqueue(object : Callback<Map<String, Any>> {

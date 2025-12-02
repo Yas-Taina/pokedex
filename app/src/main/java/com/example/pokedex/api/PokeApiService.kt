@@ -17,6 +17,9 @@ interface PokeApiService {
     @GET("type/{type}")
     fun getPokemonsByType(@Path("type") type: String): Call<TypePokemonResponse>
 
+    @GET("ability")
+    fun getAllAbilities(@Query("limit") limit: Int = 1000, @Query("offset") offset: Int = 0): Call<AbilityListResponse>
+
     @GET("ability/{ability}")
     fun getPokemonsByAbility(@Path("ability") ability: String): Call<AbilityPokemonResponse>
 
@@ -41,4 +44,14 @@ data class AbilityPokemonResponse(
 
 data class AbilityPokemonSlot(
     val pokemon: PokemonBasic
+)
+
+data class AbilityListResponse(
+    val count: Int,
+    val results: List<AbilityBasic>
+)
+
+data class AbilityBasic(
+    val name: String,
+    val url: String
 )

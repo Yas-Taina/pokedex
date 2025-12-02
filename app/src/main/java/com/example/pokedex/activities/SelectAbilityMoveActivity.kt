@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import com.example.pokedex.R
+import com.example.pokedex.api.AbilityListResponse
 import com.example.pokedex.api.RetrofitClient
 import com.example.pokedex.models.PokemonDetail
 import com.example.pokedex.models.RegisterPokemonRequest
@@ -15,14 +16,15 @@ import retrofit2.Response
 class SelectAbilityMoveActivity : BaseActivity() {
 
     private lateinit var tvPokemonName: TextView
-    private lateinit var spinnerAbility: Spinner
-    private lateinit var checkBoxContainer: LinearLayout
+    private lateinit var checkBoxAbilityContainer: LinearLayout
+    private lateinit var checkBoxMoveContainer: LinearLayout
     private lateinit var btnConfirm: Button
     private lateinit var sessionManager: SessionManager
 
     private var pokemonId = 0
     private var pokemonName = ""
     private var pokemonTypes = ""
+    private val selectedAbilities = mutableListOf<String>()
     private val selectedMoves = mutableListOf<String>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,13 +36,21 @@ class SelectAbilityMoveActivity : BaseActivity() {
         pokemonId = intent.getIntExtra("pokemon_id", 0)
         pokemonName = intent.getStringExtra("pokemon_name") ?: ""
 
-        tvPokemonName = findViewById(R.id.tvPokemonName)
-        spinnerAbility = findViewById(R.id.spinnerAbility)
-        checkBoxContainer = findViewById(R.id.checkBoxContainer)
-        btnConfirm = findViewById(R.id.btnConfirm)
+        try {
+            tvPokemonName = findViewById(R.id.tvPokemonName)
+            checkBoxAbilityContainer = findViewById(R.id.checkBoxAbilityContainer)
+            checkBoxMoveContainer = findViewById(R.id.checkBoxMoveContainer)
+            btnConfirm = findViewById(R.id.btnConfirm)
+        } catch (e: Exception) {
+            Toast.makeText(this, "Erro ao inicializar views: ${e.message}", Toast.LENGTH_LONG).show()
+            finish()
+            return
+        }
+
         tvPokemonName.text = "Pokémon: ${pokemonName.replaceFirstChar { it.uppercase() }}"
 
         loadPokemonDetails()
+        loadAllAbilities()
 
         btnConfirm.setOnClickListener {
             registerPokemon()
@@ -57,7 +67,6 @@ class SelectAbilityMoveActivity : BaseActivity() {
                     if (response.isSuccessful) {
                         val pokemon = response.body()
                         if (pokemon != null) {
-                            setupAbilities(pokemon)
                             setupMoves(pokemon)
                             pokemonTypes = pokemon.types.joinToString(",") { it.type.name }
                         }
@@ -70,15 +79,50 @@ class SelectAbilityMoveActivity : BaseActivity() {
             })
     }
 
-    private fun setupAbilities(pokemon: PokemonDetail) {
-        val abilities = pokemon.abilities.map { it.ability.name }
-        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, abilities)
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        spinnerAbility.adapter = adapter
+    private fun loadAllAbilities() {
+        RetrofitClient.pokeApiService.getAllAbilities()
+            .enqueue(object : Callback<AbilityListResponse> {
+                override fun onResponse(
+                    call: Call<AbilityListResponse>,
+                    response: Response<AbilityListResponse>
+                ) {
+                    if (response.isSuccessful) {
+                        val abilities = response.body()?.results?.map { it.name } ?: emptyList()
+                        setupAbilities(abilities)
+                    }
+                }
+
+                override fun onFailure(call: Call<AbilityListResponse>, t: Throwable) {
+                    Toast.makeText(this@SelectAbilityMoveActivity, "Erro ao carregar habilidades", Toast.LENGTH_SHORT).show()
+                }
+            })
+    }
+
+    private fun setupAbilities(abilities: List<String>) {
+        checkBoxAbilityContainer.removeAllViews()
+
+        abilities.forEach { ability ->
+            val checkBox = CheckBox(this)
+            checkBox.text = ability
+
+            checkBox.setOnCheckedChangeListener { _, isChecked ->
+                if (isChecked) {
+                    if (selectedAbilities.size < 3) {
+                        selectedAbilities.add(ability)
+                    } else {
+                        checkBox.isChecked = false
+                        Toast.makeText(this, "Máximo de 3 habilidades permitidas.", Toast.LENGTH_SHORT).show()
+                    }
+                } else {
+                    selectedAbilities.remove(ability)
+                }
+            }
+            checkBoxAbilityContainer.addView(checkBox)
+        }
     }
 
     private fun setupMoves(pokemon: PokemonDetail) {
-        val moves = pokemon.moves.take(20).map { it.move.name }
+        val moves = pokemon.moves.map { it.move.name }
 
         moves.forEach { move ->
             val checkBox = CheckBox(this)
@@ -86,44 +130,38 @@ class SelectAbilityMoveActivity : BaseActivity() {
 
             checkBox.setOnCheckedChangeListener { _, isChecked ->
                 if (isChecked) {
-                    if (selectedMoves.size < 3) {
-                        selectedMoves.add(move)
-                    } else {
-                        checkBox.isChecked = false
-                        Toast.makeText(this, "Máximo de 3 ataques permitidos.", Toast.LENGTH_SHORT).show()
-                    }
+                    selectedMoves.add(move)
                 } else {
                     selectedMoves.remove(move)
                 }
             }
-            checkBoxContainer.addView(checkBox)
+            checkBoxMoveContainer.addView(checkBox)
         }
     }
 
     private fun registerPokemon() {
-        val ability = spinnerAbility.selectedItem?.toString()
-
-        if (ability == null) {
-            showAlert("Atenção", "Selecione uma habilidade.")
+        if (selectedAbilities.isEmpty()) {
+            showAlert("Atenção", "Selecione pelo menos 1 habilidade.")
+            return
+        }
+        if (selectedAbilities.size > 3) {
+            showAlert("Atenção", "Selecione no máximo 3 habilidades.")
             return
         }
         if (selectedMoves.isEmpty()) {
             showAlert("Atenção", "Selecione pelo menos 1 ataque.")
             return
         }
-        if (selectedMoves.size > 3) {
-            showAlert("Atenção", "Selecione no máximo 3 ataques.")
-            return
-        }
 
         val userLogin = sessionManager.getUserLogin() ?: return
+        val abilitiesString = selectedAbilities.joinToString(",")
         val movesString = selectedMoves.joinToString(",")
 
         val request = RegisterPokemonRequest(
             pokemon_id = pokemonId,
             pokemon_name = pokemonName,
             types = pokemonTypes,
-            ability = ability,
+            ability = abilitiesString,
             moves = movesString,
             user_login = userLogin
         )
