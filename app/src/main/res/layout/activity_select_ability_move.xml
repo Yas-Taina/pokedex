@@ -64,10 +64,11 @@
 
             <ScrollView
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
+                android:layout_height="0dp"
+                android:layout_weight="1"
                 android:background="#F5F5F5"
                 android:padding="8dp"
-                android:layout_marginBottom="12dp">
+                android:layout_marginBottom="0dp">
 
                 <LinearLayout
                     android:id="@+id/checkBoxAbilityContainer"
@@ -80,7 +81,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
                 android:background="#CCCCCC"
-                android:layout_marginBottom="4dp" />
+                android:layout_marginVertical="6dp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -93,10 +94,11 @@
 
             <ScrollView
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
+                android:layout_height="0dp"
+                android:layout_weight="1"
                 android:background="#F5F5F5"
                 android:padding="8dp"
-                android:layout_marginBottom="12dp">
+                android:layout_marginBottom="0dp">
 
                 <LinearLayout
                     android:id="@+id/checkBoxMoveContainer"
@@ -109,8 +111,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
                 android:background="#CCCCCC"
-                android:layout_marginBottom="4dp"
-                android:layout_marginTop="4dp" />
+                android:layout_marginBottom="6dp"
+                android:layout_marginTop="6dp" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnConfirm"
